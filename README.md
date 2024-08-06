@@ -2,7 +2,7 @@
 Leather goods e-shoop
 
 # Description
-Just some e-shop design ideas. No data fetching at this moment.
+Just some e-shop design ideas for future real project of leather business. No data fetching at this moment.
 
 ## Instalation
 1. git clone https://github.com/YourUsername/React-eshop.git
