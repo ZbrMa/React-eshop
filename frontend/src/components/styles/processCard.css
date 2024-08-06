@@ -1,0 +1,111 @@
+.process-card {
+    perspective: 1000px;
+    background-color: transparent;
+    aspect-ratio: 1 / 1;
+    max-height: 360px;
+    width: 100%;
+}
+
+.process-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/*.process-card:hover .process-card-inner {
+    transform: rotateY(180deg);
+}*/
+
+.process-card.flipped .process-card-inner {
+    transform: rotateY(180deg);
+}
+
+.process-front, .process-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.process-front {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    gap: 16px;
+}
+
+.process-back {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(180deg);
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.process-back h1 {
+    color: white;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.process-back-shadow {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.process-text {
+    padding: 0 32px;
+}
+
+.process-back button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+@media only screen and (min-width:768px){
+    .process-card button {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1080px) {
+    .process-back h1, .process-front {
+        font-size: 1.6rem;
+    }
+
+    .process-back {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (min-width:1080px){
+    .process-back h1, .process-front {
+        font-size: 1.8rem;
+    }
+
+    .process-back {
+        font-size: 1.4rem;
+    }
+}
