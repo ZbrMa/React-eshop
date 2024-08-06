@@ -5,10 +5,10 @@ Leather goods e-shoop
 Just some e-shop design ideas for future real project of leather business. No data fetching at this moment.
 
 ## Instalation
-1. git clone https://github.com/YourUsername/React-eshop.git
-2. navigate to frontend folder
-3. install dependencies npm install
-4. npm start
+1. ```git clone https://github.com/YourUsername/React-eshop.git```
+2. navigate to frontend folder ```cd frontend```
+3. install dependencies ```npm install```
+4. ```npm start```
 
 ## ToDo
 1. .NET backend for data fetching
