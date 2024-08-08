@@ -13,5 +13,6 @@ Just some e-shop design ideas for future real leather business project. No data 
 ## ToDo
 1. .NET backend for data fetching
 2. work on design
-3. add admin features(adding/removing/editing items)
-4. build and release
+3. user login context/redux
+4. add admin features(adding/removing/editing items)
+5. build and release
