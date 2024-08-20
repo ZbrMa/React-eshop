@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 
 const app = express();
 const port = 5000;
-const ip = '172.26.240.1';
+const ip = 'localhost';
 
 const corsOptions = {
   credentials: true,

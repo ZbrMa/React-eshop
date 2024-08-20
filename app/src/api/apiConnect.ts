@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import qs from 'qs';
 import axios from 'axios';
 
-const ip = '172.26.240.1';
+const ip = 'localhost';
 
 export const api = axios.create({
     baseURL: `http://${ip}:5000`,
