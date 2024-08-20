@@ -1,0 +1,89 @@
+.card {
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    aspect-ratio: 1/1;
+   /* border-radius: 8px;*/
+    text-align: center;
+    transition: transform 0.5s;
+    max-height: 300px;
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.card-overlay, .card-overlay-active {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: var(--border-radius);
+    align-content: center;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.card-overlay {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+}
+
+.card-overlay-active {
+    background: rgba(123, 255, 253, 0.4);
+    border-radius: var(--border-radius);
+}
+
+.card-title {
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+}
+
+.card-title-inner {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+/*.card:hover .card-overlay{
+    background: rgba(0, 0, 0, 0.5);
+}*/
+
+.card-overlay::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: var(--border-radius);
+    opacity: .5;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: bottom center;
+    transform-origin: bottom center;
+    transition: 1s transform ease-in-out;
+}
+
+.card:hover .card-overlay::after {
+    transform-origin: bottom center;
+    transition: transform 1s ease;
+    transform: scaleY(1);
+    border-radius: var(--border-radius);
+}
+
+@media only screen and (max-width:768px){
+    .card {
+        aspect-ratio: 2.5/1;
+    }
+}

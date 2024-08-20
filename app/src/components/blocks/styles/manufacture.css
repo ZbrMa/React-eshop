@@ -1,0 +1,50 @@
+.manf-img{
+    height: 50vh;
+    width: 100vw;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
+}
+
+.manf-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-top: 50vh;
+}
+
+.manf-card {
+    display: flex;
+}
+
+.manf-container h1 {
+    margin-top: 0;
+}
+
+.manf-container .manf-card:not(:last-child)::after {
+    content: '';
+    height: 100%;
+    margin: auto 0;
+    width: 1px;
+    background-color: var(--primaryHover);
+}
+.manf-container article {
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.manf-card-inner {
+    padding: 0 16px;
+}
+
+.manf-card-img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1.5/1;
+    border-radius: var(--border-radius);
+}

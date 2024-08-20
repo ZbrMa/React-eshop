@@ -1,0 +1,46 @@
+.slider{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40px calc(100% - 80px) 40px;
+}
+
+.auto-slider{
+    width: 100%;
+}
+
+.outer-carousel {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.slider-moving {
+    display: grid;
+    transition: transform 1s ease-in-out;
+}
+
+.slider button {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primaryHover);
+    padding: 0;
+}
+
+.slider button svg {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-item {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width:768px){
+    .slider{
+        grid-template-columns: 40px calc(100% - 80px) 40px;
+        padding: 0;
+    }
+}

@@ -1,0 +1,49 @@
+.side-filter {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.side-filter-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-right: 16px;
+}
+
+.side-filter::after {
+    height: 100%;
+    width: 1px;
+    background: var(--primaryHover);
+    content: '';
+    border-radius: 16px;
+}
+
+.side-filter-inner.sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 16px;
+    height: fit-content;
+}
+
+@media only screen and (max-width:900px){
+    .side-filter {
+        width: 100%;
+        display: block;
+    }
+
+    .side-filter-inner {
+        gap: 8px;
+        padding: 0;
+    }
+
+    .side-filter-inner.sticky {
+        position: relative;
+        top: 0;
+    }
+
+    .side-filter::after {
+        height: 0px;
+        width: 0px;
+        content: none;
+    }
+}
