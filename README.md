@@ -4,7 +4,7 @@ Leather goods e-shoop
 # Description
 Just some e-shop design ideas for future real leather business project.  
 Backend: **Node.js**, **express**  
-Database: **localhost** (just for testing and development)  
+Database: **MySQL on localhost** (just for testing and development)  
 Fetching: **axios**  
 User management: **Redux**  
 Filters: **react-context**  
@@ -15,7 +15,8 @@ Images are some jpegs, pngs and webps. They are there just for illustraion...
 2. navigate to app folder ```cd app```
 3. install dependencies ```npm install```
 4. frontend run ```npm start```
-5. backend run ```npm run start:backend```
+5. on Windowns go to services and run MySQL
+6. backend run ```npm run start:backend```
 
 ## Current state
 ![Home page](app/public/eshop_screen.png)  
