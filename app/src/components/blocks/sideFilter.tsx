@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Category, IFilter } from "../../types/types";
 import { Dropdown } from "../common/dropdown";
-import { useGetCategories } from "../../api/fetchHooks";
+import { useGetCategories } from "../../hooks/fetchHooks";
 import { sexOptions } from "../../types/types";
 import './styles/sideFilter.css';
 import { useFilter } from "../../context/productFilter";

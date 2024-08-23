@@ -1,4 +1,4 @@
-import { useGetProduct, useGetProductSize, useGetCategories } from "../../api/fetchHooks";
+import { useGetProduct, useGetProductSize, useGetCategories } from '../../hooks/fetchHooks';
 import { useLocation } from "react-router-dom";
 import './styles/productDetail.css';
 import { useEffect, useState } from "react";
@@ -58,14 +58,16 @@ export function ProductDetail(){
             <div className="product-detail">
                 <ImageGallery images={images}/>
                 <div className="product-info">
-                    <div className="product-header">
-                        <h1>{product.jmeno}</h1>
-                        <ul className="tags">
-                            <Tag link={{link:'/produkty',paramName:'categoryId',param:categories?.find(cat=>cat.jmeno === product.kategorie)?.id}}>{product.kategorie}</Tag>
-                            <Tag link={{link:'/produkty',paramName:'sexId',param:product.sex}}>{sexOptions.find(sex => sex.value === product.sex)?.label}</Tag>
-                        </ul>
+                    <div className="product-info-top">
+                        <div className="product-header">
+                            <h1>{product.jmeno}</h1>
+                            <ul className="tags">
+                                <Tag link={{link:'/produkty',paramName:'categoryId',param:categories?.find(cat=>cat.jmeno === product.kategorie)?.id}}>{product.kategorie}</Tag>
+                                <Tag link={{link:'/produkty',paramName:'sexId',param:product.sex}}>{sexOptions.find(sex => sex.value === product.sex)?.label}</Tag>
+                            </ul>
+                        </div>
+                        <a className="product-about">{product.popis}</a>
                     </div>
-                    <a className="product-about">{product.popis}</a>
                     <div className="product-psc">
                             <div className="product-color-container">
                                 <h3>Barva</h3>

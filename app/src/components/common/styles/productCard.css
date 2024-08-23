@@ -18,6 +18,8 @@
     -moz-box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
     border-radius: var(--border-radius);
+    grid-template-rows: 66.66% 33.33%;
+    max-height: 400px;
 }
 
 .products-layout .product-card .product-img{

@@ -5,6 +5,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   font-size: 1.1rem;
+  color: var(--primaryHover);
+  word-spacing: .2rem;
 }
 
 code {

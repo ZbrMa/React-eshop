@@ -1,10 +1,6 @@
 import './styles/productsBlock.css';
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 import { Card } from '../common/card';
-import { useGetProductsByCategory } from '../../api/fetchHooks';
-import { ProductsGrid } from './productsGrid';
-import { Dropdown } from '../common/dropdown';
-import { Slider } from '../common/slider';
 import { About } from './about';
 
 export function ProductsBlock() {

@@ -2,7 +2,7 @@ import { Button } from '../common/button';
 import { LoginModal } from '../../modals/loginModal';
 import './styles/footer.css';
 import { useState } from 'react';
-import { useAppSelector,useAppDispatch } from '../../store/hooks';
+import { useAppSelector,useAppDispatch } from '../../hooks/storeHooks';
 import { logout } from '../../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 

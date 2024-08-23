@@ -3,10 +3,11 @@
     --lightGrey:rgb(200, 200, 200);
     --leather:rgb(162, 73, 25);
     --primary:rgb(245, 245, 245);
-    --primaryHover:rgb(30, 30, 30);
+    --primaryHover:#272121;
     --shadow:rgb(100, 100, 100);
     --secondary:rgb(215,215,215);
-    --background:rgb(230, 230, 230);
+    --background:rgb(241, 238, 231);
+    --background-inner: rgb(242, 241, 231);
     --backgroundSecondary:rgb(224, 215, 211);
     --error:rgba(255, 0, 0, 0.2);
     --errorSecondary:rgba(255, 120, 120, 0.2);
@@ -91,9 +92,17 @@
     background: #555;
   }
 
+#root {
+     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 main {
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     background: var(--background);
+    flex-grow: 1;
 }
 
 html {
@@ -118,8 +127,12 @@ h4 {
     font-size: 1.4rem;
 }
 
-button, input {
+button, input, textarea {
     font-family: "EB Garamond";
+}
+
+textarea {
+    resize: none;
 }
 
 p {

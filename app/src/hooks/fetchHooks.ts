@@ -1,10 +1,7 @@
-import { useApiPost, useApiGetNoParams } from './apiConnect';
+import { useApiPost, useApiGetNoParams } from '../api/apiConnect';
 import { Product,Category, ProductSize } from '../types/types';
-import { IUser } from '../types/user';
-import { useEffect } from 'react';
-import { store } from '../store/store';
 
-export const useGetProductsByCategory = (payload:{}) => {
+export const useGetProductsByFilter = (payload:{}) => {
     const {data, loading, error} = useApiPost<Product[]>('produkty',payload);
     return { data, loading, error};
 };

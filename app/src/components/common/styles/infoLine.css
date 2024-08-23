@@ -1,0 +1,16 @@
+.info-line {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: max-content;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.info-line-title {
+    border-bottom: 2px solid var(--backgroundSecondary);
+}
+
+.info-line-content {
+    font-size: 1.8rem;
+}

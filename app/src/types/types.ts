@@ -39,8 +39,16 @@ export interface IFilter {
 }
 
 export interface ISex {
-    value:number,
-    label:string,
+    value:number;
+    label:string;
+};
+
+export interface IContactForm {
+    name:string;
+    surname:string;
+    email:string;
+    phone:string;
+    text:string;
 };
 
 export const sexOptions:ISex[] = [

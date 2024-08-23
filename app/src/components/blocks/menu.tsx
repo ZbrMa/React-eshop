@@ -50,8 +50,8 @@ export function Menu({variant = 'primary'}:Props) {
           )}
             <menu className='nav-items'>
               <li className='nav-item' onClick={()=>navigation('/produkty')}>Produkty</li>
-              <li className='nav-item' onClick={()=>scrollTo('vyroba')}>Výroba</li>
-              <li className='nav-item'>Kontakt</li>
+              <li className='nav-item' onClick={()=>navigation('/vyroba')}>Výroba</li>
+              <li className='nav-item' onClick={()=>navigation('/kontakt')}>Kontakt</li>
             </menu>
             <div className='menu-logo' onClick={()=>navigation('/')}>
               <IoDiamondOutline></IoDiamondOutline>

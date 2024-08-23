@@ -2,11 +2,10 @@ import { BodyBlock } from "../components/blocks/bodyBlock";
 import { PageLayout } from "./layout";
 import { SideFilter } from "../components/blocks/sideFilter";
 import { useEffect, useState } from "react";
-import { useGetProductsByCategory } from "../api/fetchHooks";
+import {useGetProductsByFilter } from "../hooks/fetchHooks";
 import { ProductCard } from "../components/common/productCard";
 import { useLocation } from "react-router-dom";
 import { useFilter } from "../context/productFilter";
-import { IFilter } from "../types/types";
 
 export function Produkty() {
     const {filter,setFilter} = useFilter();
@@ -36,7 +35,7 @@ export function Produkty() {
         setFilter(initialFilter);
     },[initialFilter]);
 
-    const {data:products,loading:productsLoading,error:productsError} = useGetProductsByCategory(filter);
+    const {data:products,loading:productsLoading,error:productsError} = useGetProductsByFilter(filter);
 
     return(
         <PageLayout menuVariant="secondary">

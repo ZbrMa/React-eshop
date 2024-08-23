@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import qs from 'qs';
 import axios from 'axios';
 
 const ip = 'localhost';

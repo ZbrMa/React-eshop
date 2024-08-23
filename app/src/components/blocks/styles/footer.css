@@ -1,6 +1,6 @@
 footer {
     width: 100%;
-    background-color: black;
+    background-color: var(--primaryHover);
     color:white;
 }
 

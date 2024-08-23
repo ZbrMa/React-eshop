@@ -1,6 +1,8 @@
 // authSlice.js
-import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice,createAsyncThunk,PayloadAction } from '@reduxjs/toolkit';
 import { api } from '../api/apiConnect';
+import Cookies from 'js-cookie';
+
 
 interface authState {
     username:string | null,
@@ -35,6 +37,10 @@ const authSlice = createSlice({
     logout: (state) => {
       state.username = null;
       state.token = null;
+      Cookies.remove('token');
+    },
+    setToken:(state, action) => {
+      state.token = action.payload.token;
     },
   },
   extraReducers: (builder) =>{
@@ -47,6 +53,7 @@ const authSlice = createSlice({
         state.username = action.payload.username;
         state.token = action.payload.token;
         state.loading = false;
+        Cookies.set('token', action.payload.token, { expires: 1/24, secure: true, sameSite: 'Strict' });
       })
     .addCase(login.rejected, (state, action) => {
         state.loading = false;

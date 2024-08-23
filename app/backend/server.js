@@ -55,7 +55,7 @@ db.connect((err) => {
         if (!isMatch) {
             return res.status(401).send('Invalid credentials');
         } else {
-            const token = jwt.sign({ username }, 'secret_key', { expiresIn: '1h' });
+            const token = jwt.sign({ username }, 'secret_key', { expiresIn: '5m' });
             return res.json({ username: username, token: token });
         }
       } 
@@ -68,34 +68,29 @@ db.connect((err) => {
   app.post('/produkty',(req,res)=>{
     const categoryId = req.body.category;
     const sexId = req.body.sex;
-    let queryParams = [];
+
     let query= `SELECT p.id, p.cena, p.obrazek, p.popis, p.jmeno, k.jmeno AS kategorie
         FROM produkty p
         LEFT JOIN kategorie k ON p.kategorie = k.id
         `;
 
-    if(categoryId && categoryId.length > 0){
-      query += ' WHERE'
-      if(sexId.length === 1){
-        query += ' k.id = ?';
-      }
-      else {
-        const placeholders = categoryId.map(() => '?').join(', ');
-        query += ` k.id IN (${placeholders})`;
-      };
-      queryParams = queryParams.concat(categoryId);
+    let queryParams = [];
+    let whereClauses = [];
+
+    if (categoryId.length > 0) {
+      const placeholders = categoryId.map(() => '?').join(', ');
+      whereClauses.push(`k.id ${categoryId.length === 1 ? '=' : 'IN'} (${placeholders})`);
+      queryParams.push(...categoryId);
+    };
+  
+    if (sexId.length > 0) {
+      const placeholders = sexId.map(() => '?').join(', ');
+      whereClauses.push(`p.pohlavi ${sexId.length === 1 ? '=' : 'IN'} (${placeholders})`);
+      queryParams.push(...sexId);
     };
 
-    if(sexId && sexId.length > 0){
-      if(sexId.length === 1){
-        query += ' AND p.pohlavi = ?';
-      }
-      else {
-        const placeholders = sexId.map(() => '?').join(', ');
-      query += ` AND p.pohlavi IN (${placeholders})`;
-      };
-      queryParams = queryParams.concat(sexId);
-    };
+    const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+    query += whereClause;
 
     db.query(query,queryParams,(err,results)=>{
         if(err){
@@ -115,7 +110,7 @@ db.connect((err) => {
       if(err){
         return res.status(500).json(null);
       };
-      if (res.length === 0) {
+      if (results.length === 0) {
           return res.status(200).json(null);
       }
       else {return res.status(200).json(results)};

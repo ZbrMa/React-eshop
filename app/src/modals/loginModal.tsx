@@ -2,7 +2,7 @@ import { Modal } from "./modal";
 import { Button } from "../components/common/button";
 import { useState, useRef, useEffect } from "react";
 import { Input } from "../components/common/input";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../hooks/storeHooks";
 import { login } from "../slices/authSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -44,7 +44,6 @@ export function LoginModal({trigger,close}:Props){
     useEffect(()=>{
         if (username && token) {
             handleClose();
-            navigate('/');
         };
     },[username,token])
 

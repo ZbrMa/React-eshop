@@ -1,4 +1,4 @@
-import { useNavigate, NavigateOptions } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NavigationLink } from "../../types/types";
 import './styles/tag.css';
 

@@ -29,7 +29,7 @@
 }
 
 .product-detail h1 {
-    margin-top: 0;
+    margin: 0 0 8px 0;
     font-size: 1.8rem;
     border-bottom: 2px solid var(--backgroundSecondary);
 }
@@ -59,6 +59,10 @@
     justify-content: flex-end;
 }
 
+.product-price-container p {
+    margin: 0;
+}
+
 .product-size-container {
     grid-column: 2;
     grid-row: 1 / span 2;
@@ -79,6 +83,11 @@
 .product-size-info {
     display: flex;
     flex-direction: column;
+    row-gap: 8px;
+}
+
+.product-size-info p {
+    margin: 0;
 }
 
 .product-add-info {
