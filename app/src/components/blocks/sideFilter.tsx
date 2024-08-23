@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { Category, IFilter } from "../../types/types";
 import { Dropdown } from "../common/dropdown";
 import { useGetCategories } from "../../api/fetchHooks";
-import { DropdownOption } from "../../types/types";
+import { sexOptions } from "../../types/types";
 import './styles/sideFilter.css';
 import { useFilter } from "../../context/productFilter";
 
 type Props = {
     isFixed?:boolean,
-    initialState?:IFilter,
-}
+    initialFilter?:IFilter,
+};
 
-export function SideFilter({isFixed = false,initialState}:Props) {
+export function SideFilter({isFixed = false,initialFilter}:Props) {
     const {filter,setFilter} = useFilter();
     const {data:categories,loading:categoriesLoading,error:categoriesError} = useGetCategories();
 
@@ -36,28 +36,38 @@ export function SideFilter({isFixed = false,initialState}:Props) {
         }));
     };
 
-    const sexOptions = [
-        {
-            label:'Unisex',
-            value:0,
-        },
-        {
-            label:'Žena',
-            value:1,
-        },
-        {
-            label:'Muž',
-            value:2,
-        }
-    ];
-
     return(
         <div className="side-filter">
             <div className={`side-filter-inner ${isFixed ? 'sticky' : ''}`}>
                 <h4>Filtr</h4>
-                <Dropdown options={categories?.map(category => {return{label:category.jmeno, value:category.id}})} placeholder="Kategorie" returnSelected={handleCategory} initialValue={filter.category}></Dropdown>
-                <Dropdown options={sexOptions} placeholder="Muž/žena" returnSelected={handleSex}></Dropdown>
-                <Dropdown options={categories?.map(category => {return{label:category.jmeno, value:category.id}})} placeholder="Cena" returnSelected={handlePrice}></Dropdown>
+                {categories && (
+                    <Dropdown 
+                        options={categories.map(category => ({
+                            label: category.jmeno,
+                            value: category.id,
+                        }))}
+                        placeholder="Kategorie" 
+                        returnSelected={handleCategory} 
+                        initialValue={initialFilter?.category}
+                    />
+                )}
+                <Dropdown 
+                    options={sexOptions} 
+                    placeholder="Muž/žena" 
+                    returnSelected={handleSex}
+                    initialValue={initialFilter?.sex}
+                />
+                {categories && (
+                    <Dropdown 
+                        options={categories.map(category => ({
+                            label: category.jmeno,
+                            value: category.id,
+                        }))}
+                        placeholder="Cena" 
+                        returnSelected={handlePrice} 
+                        initialValue={initialFilter?.price}
+                    />
+                )}
             </div>
         </div>
     );

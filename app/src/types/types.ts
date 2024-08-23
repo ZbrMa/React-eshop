@@ -5,6 +5,7 @@ export interface Product {
     jmeno:string;
     kategorie: string;
     popis: string;
+    sex:number;
 };
 
 export interface ProductSize {
@@ -14,14 +15,21 @@ export interface ProductSize {
     hloubka:number;
 }
 
-export interface Category {
-    id: number;
-    jmeno: string;
-};
+
+export interface NavigationLink<StateType = unknown> {
+    link: string;
+    paramName?: keyof StateType;
+    param?: StateType[keyof StateType];
+}
 
 export interface DropdownOption {
     label:string;
-    value:string | number;
+    value:number;
+};
+
+export interface Category {
+    id: number;
+    jmeno: string;
 };
 
 export interface IFilter {
@@ -29,3 +37,23 @@ export interface IFilter {
     sex:number[];
     category:number[];
 }
+
+export interface ISex {
+    value:number,
+    label:string,
+};
+
+export const sexOptions:ISex[] = [
+    {
+        label:'Unisex',
+        value:0,
+    },
+    {
+        label:'Žena',
+        value:1,
+    },
+    {
+        label:'Muž',
+        value:2,
+    }
+];

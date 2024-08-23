@@ -68,6 +68,8 @@
     flex-wrap: wrap;
     flex: 0 1 auto;
     gap: 4px;
+    max-height: calc(8px + 2.5rem);
+    overflow-y: auto;
 }
 
 .selected-item {

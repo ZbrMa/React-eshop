@@ -70,6 +70,27 @@
     --large:1220px;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: var(--border-radius);
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--shadow);
+    border-radius: var(--border-radius);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 main {
     min-height: 100vh;
     background: var(--background);

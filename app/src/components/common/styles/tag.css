@@ -1,0 +1,27 @@
+.tag {
+    color: var(--primary);
+    background-color: var(--primaryHover);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    z-index: 3;
+    border-radius: var(--border-radius);
+    padding: 2px 8px;
+    margin-right: 4px;
+    font-weight: 400;
+    width: fit-content;
+}
+
+.tag.link:hover {
+    background-color:var(--primary);
+    cursor: pointer;
+    outline: 2px solid var(--primaryHover);
+    outline-offset: -2px;
+    color: var(--primaryHover);
+}
+
+.tag-text {
+    font-size: 0.8rem;
+}

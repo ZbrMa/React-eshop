@@ -124,7 +124,7 @@ db.connect((err) => {
 
   app.post('/produkt_detail',(req,res)=>{
     const prodId = req.body.prod;
-    let query = `SELECT p.id, p.cena, p.obrazek, p.popis, p.jmeno, k.jmeno AS kategorie
+    let query = `SELECT p.id, p.cena, p.obrazek, p.popis, p.jmeno, k.jmeno AS kategorie, p.pohlavi AS sex
         FROM produkty p
         LEFT JOIN kategorie k ON p.kategorie = k.id
         WHERE p.id = ? `;
@@ -160,5 +160,5 @@ db.connect((err) => {
   };
 
   app.listen(port,ip, () => {
-    console.log(`Server běží na http://localhost:${port}`);
+    console.log(`Server běží na http://${ip}:${port}`);
   });

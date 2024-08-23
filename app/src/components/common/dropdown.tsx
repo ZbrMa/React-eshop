@@ -1,13 +1,14 @@
 import { useState, useEffect,useRef } from "react";
 import { IoClose, IoChevronUp, IoChevronDown} from "react-icons/io5";
 import './styles/dropdown.css';
+import { DropdownOption } from "../../types/types";
 
 type Props = {
-    options:{label:string,value:any}[] | undefined;
+    options:DropdownOption[];
     placeholder:string,
-    returnSelected:any,
+    returnSelected:(value:number[])=>void,
     multiSelect?:boolean,
-    initialValue?:any[];
+    initialValue?:number[];
 };
 
 const iconStyle = {
@@ -20,9 +21,9 @@ const iconStyle = {
 
 export function Dropdown({options,placeholder,returnSelected,multiSelect=true,initialValue}:Props){
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const[isOpened,setIsOpened] = useState<boolean>(false);
-    const [selected, setSelected] = useState<{ label: string, value: any }[]>(
-        initialValue && options ? options.filter(option => initialValue.includes(option.value)) : [] );
+    const[isOpened,setIsOpened] = useState(false);
+    const [selected, setSelected] = useState<DropdownOption[]>(
+        initialValue ? options.filter(option => initialValue.includes(option.value)) : [] );
 
     const handleOpen =()=>{
         if(!isOpened) setIsOpened(true);
@@ -35,9 +36,13 @@ export function Dropdown({options,placeholder,returnSelected,multiSelect=true,in
         };
     };
 
+    useEffect(()=>{
+            setSelected(initialValue ? options.filter(option => initialValue.includes(option.value)) : []);
+    },[initialValue]);
+
     useEffect(() => {
         const selectedValues = selected.map(item => item.value);
-        returnSelected(multiSelect ? selectedValues : selectedValues[0]);
+        returnSelected(selectedValues);
     }, [selected]);
 
     useEffect(() => {
@@ -47,11 +52,7 @@ export function Dropdown({options,placeholder,returnSelected,multiSelect=true,in
         };
     }, []);
 
-    useEffect(()=>{
-        if (initialValue && options) setSelected(options.filter(option => initialValue.includes(option.value)));
-    },[initialValue,options])
-
-    const handleSelect = (option: { label: string, value: any }) => {
+    const handleSelect = (option:DropdownOption) => {
         
         if (selected.find(item => item.value === option.value)) {
             setSelected(selected.filter(item => item.value !== option.value));
@@ -64,7 +65,7 @@ export function Dropdown({options,placeholder,returnSelected,multiSelect=true,in
         }
     };
 
-    const handleRemove = (option: { label: string, value: any }) => {
+    const handleRemove = (option:DropdownOption) => {
         setSelected(selected.filter(item => item.value !== option.value));
     };
 
