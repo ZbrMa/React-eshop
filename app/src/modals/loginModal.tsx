@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { Input } from "../components/common/input";
 import { useAppDispatch, useAppSelector } from "../hooks/storeHooks";
 import { login } from "../slices/authSlice";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
     trigger:boolean;
@@ -18,7 +17,6 @@ export function LoginModal({trigger,close}:Props){
     const [formPass,setPass] = useState('');
     const dispatch = useAppDispatch();
     const {loading,error,username,token} = useAppSelector((state)=>state.auth); 
-    const navigate = useNavigate();
 
     useEffect(()=>{
         setOpened(trigger);

@@ -1,9 +1,9 @@
 import { BodyBlock } from "../components/blocks/bodyBlock";
+import { ProductsGrid } from "../components/blocks/productsGrid";
 import { PageLayout } from "./layout";
 import { SideFilter } from "../components/blocks/sideFilter";
 import { useEffect, useState } from "react";
 import {useGetProductsByFilter } from "../hooks/fetchHooks";
-import { ProductCard } from "../components/common/productCard";
 import { useLocation } from "react-router-dom";
 import { useFilter } from "../context/productFilter";
 
@@ -43,15 +43,7 @@ export function Produkty() {
             <BodyBlock>
                 <div className="products-layout">
                     <SideFilter isFixed initialFilter={initialFilter}></SideFilter>
-                    {productsLoading&& (<div>Načítá</div>)}  
-                    {productsError && (<div>Chyba!</div>)} 
-                    {products &&(
-                        <div className="products-content">
-                        {products.map((product,index)=>(
-                            <ProductCard key={index} image={product.obrazek} title={product.jmeno} price={product.cena} id={product.id}>{product.popis}</ProductCard>
-                        ))}
-                        </div>
-                    )}
+                    <ProductsGrid products={products} loading={productsLoading} error={productsError}></ProductsGrid>
                 </div>  
             </BodyBlock>
         </PageLayout>

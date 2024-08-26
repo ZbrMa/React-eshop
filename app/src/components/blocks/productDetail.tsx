@@ -1,11 +1,12 @@
-import { useGetProduct, useGetProductSize, useGetCategories } from '../../hooks/fetchHooks';
+import { useGetProduct, useGetProductSize, useGetCategories, useGetSex } from '../../hooks/fetchHooks';
 import { useLocation } from "react-router-dom";
+import { IProductSize } from '../../types/types';
 import './styles/productDetail.css';
 import { useEffect, useState } from "react";
-import { ProductSize, sexOptions } from "../../types/types";
 import { VariantButton } from "../common/button";
 import { ImageGallery } from "../common/imageGallery";
 import { Tag } from "../common/tag";
+import { ClipLoader } from 'react-spinners';
 
 export function ProductDetail(){
     const location = useLocation();
@@ -14,8 +15,9 @@ export function ProductDetail(){
     const {data:product,loading,error} = useGetProduct({prod:prodId});
     const {data:productSize,loading:sizeLoading,error:sizeError} = useGetProductSize({prod:prodId});
     const {data:categories,loading:categoriesLoading,error:categoriesError} = useGetCategories();
+    const {data:sexOptions,loading:sexLoading,error:sexError} = useGetSex();
 
-    const [sizeFilter, setSizeFilter] = useState<ProductSize | null>(null);
+    const [sizeFilter, setSizeFilter] = useState<IProductSize | null>(null);
     const [activeSize, setActiveSize] = useState<string | null>(null);
 
     useEffect(() => {
@@ -43,27 +45,27 @@ export function ProductDetail(){
 
     if(loading || sizeLoading){
         return(
-            <div>Načítám...</div>
+            <ClipLoader color='var(--primaryHover)' cssOverride={{margin:'0 auto'}}></ClipLoader>
         );
-    };
+    }
 
-    if(error || sizeError){
+    else if(error || sizeError){
         return(
-            <div>chyba</div>
+            <div>Vyskytla se chyba</div>
         );
-    };
+    }
 
-    if(product && productSize){
+    else if(product && productSize){
         return(
             <div className="product-detail">
-                <ImageGallery images={images}/>
+                <ImageGallery images={product.images}/>
                 <div className="product-info">
                     <div className="product-info-top">
                         <div className="product-header">
                             <h1>{product.jmeno}</h1>
                             <ul className="tags">
                                 <Tag link={{link:'/produkty',paramName:'categoryId',param:categories?.find(cat=>cat.jmeno === product.kategorie)?.id}}>{product.kategorie}</Tag>
-                                <Tag link={{link:'/produkty',paramName:'sexId',param:product.sex}}>{sexOptions.find(sex => sex.value === product.sex)?.label}</Tag>
+                                <Tag link={{link:'/produkty',paramName:'sexId',param:product.sex}}>{sexOptions?.find(sex => sex.id === product.sex)?.nazev}</Tag>
                             </ul>
                         </div>
                         <a className="product-about">{product.popis}</a>

@@ -1,14 +1,15 @@
-export interface Product {
+export interface IProduct {
     id:number;
     cena: number;
-    obrazek: string;
     jmeno:string;
     kategorie: string;
     popis: string;
     sex:number;
+    obrazek:string;
+    images:string[];
 };
 
-export interface ProductSize {
+export interface IProductSize {
     velikost:string;
     delka:number;
     sirka:number;
@@ -16,18 +17,18 @@ export interface ProductSize {
 }
 
 
-export interface NavigationLink<StateType = unknown> {
+export interface INavigationLink<StateType = unknown> {
     link: string;
     paramName?: keyof StateType;
     param?: StateType[keyof StateType];
 }
 
-export interface DropdownOption {
+export interface IDropdownOption {
     label:string;
     value:number;
 };
 
-export interface Category {
+export interface ICategory {
     id: number;
     jmeno: string;
 };
@@ -39,8 +40,8 @@ export interface IFilter {
 }
 
 export interface ISex {
-    value:number;
-    label:string;
+    id:number;
+    nazev:string;
 };
 
 export interface IContactForm {
@@ -51,17 +52,7 @@ export interface IContactForm {
     text:string;
 };
 
-export const sexOptions:ISex[] = [
-    {
-        label:'Unisex',
-        value:0,
-    },
-    {
-        label:'Žena',
-        value:1,
-    },
-    {
-        label:'Muž',
-        value:2,
-    }
-];
+export interface ITableColumn {
+    head:string;
+    data:any[];
+};

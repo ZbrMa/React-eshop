@@ -18,7 +18,7 @@ export default function useTokenCheck() {
             }
         };
 
-        const intervalId = setInterval(checkToken,60*1000);
+        const intervalId = setInterval(checkToken,60*30*1000);
 
         return () => clearInterval(intervalId);
     },[dispatch,token]);

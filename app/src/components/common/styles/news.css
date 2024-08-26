@@ -1,14 +1,14 @@
 .news {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin-bottom: 16px;
+    margin-bottom: 64px;
 }
 
 .news-head-inner {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-right: 16px;
+    padding:64px 64px 64px 0;
 }
 
 .news-head {
@@ -27,10 +27,45 @@
     border-radius: 16px;
 }
 
+.news h2 {
+    font-size: 2.4rem;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.news-head-text {
+    font-size: 1.2rem;
+}
+
 @media only screen and (max-width:768px){
     .news {
         display: grid;
         grid-template-columns: 1fr 1fr;
         margin-bottom: 16px;
     }
+    .news h2 {
+        font-size: 1.8rem;
+    }
+
+    .news-head {
+        margin-bottom: 16px;
+    }
+
+    .news-head-inner {
+        padding:0;
+        gap: 16px;
+    }
 }
+
+@media only screen and (max-width:600px){
+    .news {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .news .slider-moving > div::before {
+        content: none;
+    }
+}
+

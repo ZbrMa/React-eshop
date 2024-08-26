@@ -10,7 +10,7 @@ export function News() {
             <div className="news-head">
                 <div className="news-head-inner">
                     <div className='news-head-content'>
-                        <h4>Novinky</h4>
+                        <h2>Novinky</h2>
                         <article className='news-head-text'>Podívej se, co je nového a krásného. Neváhej a kup.</article>
                     </div>
                 <Button variant="ghost-secondary" link="/produkty">Zjistit víc</Button>

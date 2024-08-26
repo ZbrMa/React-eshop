@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { NavigationLink } from "../../types/types";
+import { INavigationLink } from "../../types/types";
 import './styles/tag.css';
 
 interface Props<StateType = unknown> {
     children: React.ReactNode;
-    link?: NavigationLink<StateType>;
+    link?: INavigationLink<StateType>;
 }
 
 export function Tag<StateType>({ children, link }: Props<StateType>) {

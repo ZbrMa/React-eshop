@@ -6,66 +6,14 @@
     --primaryHover:#272121;
     --shadow:rgb(100, 100, 100);
     --secondary:rgb(215,215,215);
-    --background:rgb(241, 238, 231);
+    /*--background:rgb(241, 238, 231);*/
+    --background:rgb(243, 243, 243);
     --background-inner: rgb(242, 241, 231);
     --backgroundSecondary:rgb(224, 215, 211);
     --error:rgba(255, 0, 0, 0.2);
     --errorSecondary:rgba(255, 120, 120, 0.2);
-    --border-radius:1.25rem;
-
-    --leather-brown: #8B5A2B;
-    --dark-brown: #654321;
-    --cream: rgb(250, 240, 230);
-    --gold: #D4AF37;
-
-    --brown: #8B4513;
-    --gray: #BEBEBE;
-    --white: #FFFFFF;
-    --light-beige: #F5F5DC;
-
-    --dark-brown: #4A3C2A;
-    --turquoise: #008080;
-    --beige: #F5F5DC;
-    --gold: #FFD700;
-
-    --olive-green: #556B2F;
-    --gray: #A9A9A9;
-    --cream: #F5F5DC;
-    --brown: #8B4513;
-
-    --leather-brown: #8B5A2B;
-    --black: #000000;
-    --gold: #FFD700;
-    --cream: #FAF0E6;
-
-
-
-
-
-
-
-
-
-   /* --wood-brown: #8B5A2B;
-    --dark-gold: #D4AF37;
-    --cream: #FAF0E6;
-
-    --navy-blue: #003366;
-    --beige: #F5F5DC;
-    --gold: #FFD700;
-
-    --olive-green: #556B2F;
-    --dark-brown: #654321;
-    --white: #FFFFFF;
-
-    --charcoal: #36454F;
-    --burgundy: #800020;
-    --light-gray: #D3D3D3;
-
-    --caramel: #C68E17;
-    --sage-green: #9C9C7C;*/
-
-
+    --border-radius:12px;
+    --border-radius-big:1.25rem;
     --small:600px;
     --medium:900px;
     --large:1220px;
@@ -100,9 +48,9 @@
 }
 
 main {
-    /*min-height: 100vh;*/
     background: var(--background);
     flex-grow: 1;
+    position: relative;
 }
 
 html {
@@ -120,7 +68,7 @@ h1 {
 }
 
 h3 {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
 }
 
 h4 {

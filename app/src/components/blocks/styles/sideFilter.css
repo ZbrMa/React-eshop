@@ -3,6 +3,10 @@
     flex-wrap: nowrap;
 }
 
+.side-filter h2 {
+    margin-top: 0;
+}
+
 .side-filter-inner {
     display: flex;
     flex-direction: column;
@@ -25,7 +29,7 @@
     height: fit-content;
 }
 
-@media only screen and (max-width:900px){
+@media only screen and (max-width:992px){
     .side-filter {
         width: 100%;
         display: block;

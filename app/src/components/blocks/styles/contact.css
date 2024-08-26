@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    margin: 0 15%;
 }
 
 .contact-left, .contact-right{
@@ -40,4 +41,16 @@
 .contact-form textarea:focus{
     border: none;
     outline: none;
+}
+
+@media only screen and (max-width:992px) {
+    .contact-container {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .contact-left, .contact-right{
+        width: 100%;
+    }
+    
 }

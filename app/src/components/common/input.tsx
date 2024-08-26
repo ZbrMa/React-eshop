@@ -1,25 +1,26 @@
 import './styles/input.css';
+import { InputHTMLAttributes } from 'react';
+import { useState } from 'react';
 
-type Props = {
-    placeholder:string;
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>,'placeholder'> {
     returnValue:(value: React.ChangeEvent<HTMLInputElement>) =>void;
     placeholderPosition?:'inside' | 'outside';
-    type:string;
     error?:boolean;
+    placeholder:string,
 };
 
-export function Input({placeholder,returnValue, type, placeholderPosition = 'inside',error=false}:Props) {
+export function Input({returnValue, placeholderPosition = 'inside',error=false,placeholder,...inputProps}:InputProps) {
 
     if(placeholderPosition === 'inside'){
         return(
-            <input className={`input ${error? 'error': ''}`} placeholder={placeholder} type={type} onChange={returnValue}></input>
+            <input className={`input ${error? 'error': ''}`} {...inputProps} placeholder={placeholder} onChange={returnValue}></input>
         );
     }
     else {
         return(
             <div className="input-container">
                 <label className="input-placeholder">{placeholder}:</label>
-                <input className={`input ${error? 'error': ''}`} type={type} onChange={returnValue}></input>
+                <input className={`input ${error? 'error': ''}`} {...inputProps} onChange={returnValue}></input>
             </div>
         );
     };

@@ -98,7 +98,7 @@
 
 .button, .variant-button {
     box-sizing: border-box;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-big);
     text-transform: uppercase;
     transition: background-color .5s;
     position: relative;

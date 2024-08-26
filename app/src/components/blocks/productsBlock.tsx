@@ -10,13 +10,13 @@ export function ProductsBlock() {
         <>     
             <div className='product-container'>
                         <Card
-                            image='/images/banner.jpg'
+                            image='/images/opasek.webp'
                             title='Pásky'
                             onClick={()=>setCategory(4)}
                             id={4}
                         />
                         <Card
-                            image='/images/penezenka.jpeg'
+                            image='/images/penezenka.webp'
                             title='Peněženky'
                             onClick={()=>setCategory(1)}
                             id={1}

@@ -10,7 +10,7 @@ export function About(){
                 <img className="about-img" src="/images/banner.jpg" alt="aboutimage"></img>
                 <div className="about-content">
                     <div className='about-content-text'>
-                        <h3>O mě</h3>
+                        <h1>O mě</h1>
                         <article className="about-article">Senectus et netus et malesuada fames ac turpis egestas. Aliquam erat volutpat. 
                         Etiam dictum tincidunt diam. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Integer lacinia.
                         Senectus et netus et malesuada fames ac turpis egestas. Aliquam erat volutpat. 

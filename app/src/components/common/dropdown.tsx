@@ -1,10 +1,10 @@
 import { useState, useEffect,useRef } from "react";
 import { IoClose, IoChevronUp, IoChevronDown} from "react-icons/io5";
 import './styles/dropdown.css';
-import { DropdownOption } from "../../types/types";
+import { IDropdownOption } from "../../types/types";
 
 type Props = {
-    options:DropdownOption[];
+    options:IDropdownOption[];
     placeholder:string,
     returnSelected:(value:number[])=>void,
     multiSelect?:boolean,
@@ -22,7 +22,7 @@ const iconStyle = {
 export function Dropdown({options,placeholder,returnSelected,multiSelect=true,initialValue}:Props){
     const dropdownRef = useRef<HTMLDivElement>(null);
     const[isOpened,setIsOpened] = useState(false);
-    const [selected, setSelected] = useState<DropdownOption[]>(
+    const [selected, setSelected] = useState<IDropdownOption[]>(
         initialValue ? options.filter(option => initialValue.includes(option.value)) : [] );
 
     const handleOpen =()=>{
@@ -52,7 +52,7 @@ export function Dropdown({options,placeholder,returnSelected,multiSelect=true,in
         };
     }, []);
 
-    const handleSelect = (option:DropdownOption) => {
+    const handleSelect = (option:IDropdownOption) => {
         
         if (selected.find(item => item.value === option.value)) {
             setSelected(selected.filter(item => item.value !== option.value));
@@ -65,7 +65,7 @@ export function Dropdown({options,placeholder,returnSelected,multiSelect=true,in
         }
     };
 
-    const handleRemove = (option:DropdownOption) => {
+    const handleRemove = (option:IDropdownOption) => {
         setSelected(selected.filter(item => item.value !== option.value));
     };
 

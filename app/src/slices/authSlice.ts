@@ -53,7 +53,7 @@ const authSlice = createSlice({
         state.username = action.payload.username;
         state.token = action.payload.token;
         state.loading = false;
-        Cookies.set('token', action.payload.token, { expires: 1/24, secure: true, sameSite: 'Strict' });
+        Cookies.set('token', action.payload.token, { expires: 1/24,path:'/', secure: true, sameSite: 'Strict' });
       })
     .addCase(login.rejected, (state, action) => {
         state.loading = false;

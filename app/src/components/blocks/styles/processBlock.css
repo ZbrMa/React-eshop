@@ -7,7 +7,7 @@
     aspect-ratio: 1 / 1;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1219px) {
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
     .process-block {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -17,7 +17,7 @@
     }
 }
 
-@media only screen and (min-width: 1220px) {
+@media only screen and (min-width: 1200px) {
     .process-block {
         grid-template-columns: repeat(3, 1fr);
     }

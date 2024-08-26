@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
     gap: 16px;
+    position: relative;
 }
 
 .products-content {
@@ -10,19 +11,19 @@
     gap: 16px;
 }
 
-.products-content .product-text {
+.products-grid .product-text {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
-@media only screen and (min-width:900px) and (max-width:1220px) {
+@media only screen and (min-width:992px) and (max-width:1200px) {
     .products-content {
         grid-template-columns: repeat(2,1fr);
     }
 }
 
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:992px) {
     .products-layout {
         display: flex;
         flex-direction: column;

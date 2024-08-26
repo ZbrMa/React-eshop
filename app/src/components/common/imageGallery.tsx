@@ -8,9 +8,11 @@ type Props = {
 export function ImageGallery({images}:Props) {
     const [active,setAcitve] = useState(0);
 
+    console.log(images);
+
     const handleClick = (index:number) => {
         setAcitve(index);
-    }
+    };
 
     return(
         <div className="image-gallery-container">

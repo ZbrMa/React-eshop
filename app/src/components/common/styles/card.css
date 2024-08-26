@@ -8,7 +8,7 @@
     transition: transform 0.5s;
     max-height: 300px;
     width: 100%;
-    border-radius: var(--border-radius);
+    /*border-radius: var(--border-radius);*/
 }
 
 .card-overlay, .card-overlay-active {
@@ -17,7 +17,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    border-radius: var(--border-radius);
+    /*border-radius: var(--border-radius);*/
     align-content: center;
     z-index: 1;
     transition: 0.5s;
@@ -25,12 +25,12 @@
 
 .card-overlay {
     background: rgba(0, 0, 0, 0.2);
-    border-radius: var(--border-radius);
+    /*border-radius: var(--border-radius);*/
 }
 
 .card-overlay-active {
     background: rgba(123, 255, 253, 0.4);
-    border-radius: var(--border-radius);
+   /* border-radius: var(--border-radius);*/
 }
 
 .card-title {
@@ -66,7 +66,7 @@
     z-index: -1;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    border-radius: var(--border-radius);
+    /*border-radius: var(--border-radius);*/
     opacity: .5;
     -webkit-transform: scaleY(0);
     transform: scaleY(0);
@@ -79,7 +79,7 @@
     transform-origin: bottom center;
     transition: transform 1s ease;
     transform: scaleY(1);
-    border-radius: var(--border-radius);
+   /* border-radius: var(--border-radius);*/
 }
 
 @media only screen and (max-width:768px){

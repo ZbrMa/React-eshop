@@ -5,6 +5,8 @@ const mysql = require('mysql2');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 5000;
@@ -16,7 +18,8 @@ const corsOptions = {
 };
 
 app.use(express.json());
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -25,6 +28,20 @@ const db = mysql.createConnection({
     database: 'kuze',
     port: 3306,
     ssl:null
+});
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: false,
+  auth: {
+      user: 'zbranek.m@gmail.com',
+      pass: 'kbua evoe lgbp muia'
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 db.connect((err) => {
@@ -55,7 +72,7 @@ db.connect((err) => {
         if (!isMatch) {
             return res.status(401).send('Invalid credentials');
         } else {
-            const token = jwt.sign({ username }, 'secret_key', { expiresIn: '5m' });
+            const token = jwt.sign({ username }, 'secret_key', { expiresIn: '30m' });
             return res.json({ username: username, token: token });
         }
       } 
@@ -69,9 +86,11 @@ db.connect((err) => {
     const categoryId = req.body.category;
     const sexId = req.body.sex;
 
-    let query= `SELECT p.id, p.cena, p.obrazek, p.popis, p.jmeno, k.jmeno AS kategorie
+    let query= `SELECT p.id, p.cena, po.obrazek, p.popis, p.jmeno, k.jmeno AS kategorie
         FROM produkty p
         LEFT JOIN kategorie k ON p.kategorie = k.id
+        LEFT JOIN produkty_obrazky po ON p.id = po.produkt_id
+        WHERE po.titulni = 1
         `;
 
     let queryParams = [];
@@ -117,20 +136,60 @@ db.connect((err) => {
     });
   });
 
-  app.post('/produkt_detail',(req,res)=>{
-    const prodId = req.body.prod;
-    let query = `SELECT p.id, p.cena, p.obrazek, p.popis, p.jmeno, k.jmeno AS kategorie, p.pohlavi AS sex
-        FROM produkty p
-        LEFT JOIN kategorie k ON p.kategorie = k.id
-        WHERE p.id = ? `;
-    
-        db.query(query,prodId,(err,results)=>{
-          if(err){
-            return res.status(500).json(null);
-          }
-          else {return res.status(200).json(results[0])};
-        });
+  app.get('/pohlavi',(req,res)=>{
+    let query = 'SELECT * FROM pohlavi'
+    db.query(query,(err,results)=>{
+      if(err){
+        return res.status(500).json(null);
+      };
+      if (results.length === 0) {
+          return res.status(200).json(null);
+      }
+      else {return res.status(200).json(results)};
+    });
   });
+
+  app.post('/produkt_detail', async (req, res) => {
+    const prodId = req.body.prod;
+
+    try {
+        const queryProductDetail = `
+            SELECT p.id, p.cena, p.popis, p.jmeno, k.jmeno AS kategorie, p.pohlavi AS sex
+            FROM produkty p
+            LEFT JOIN kategorie k ON p.kategorie = k.id
+            WHERE p.id = ?`;
+
+        const [productDetail] = await new Promise((resolve, reject) => {
+            db.query(queryProductDetail, [prodId], (err, results) => {
+                if (err) return reject(err);
+                resolve(results);
+            });
+        });
+
+        const queryProductImages = `
+            SELECT obrazek
+            FROM produkty_obrazky
+            WHERE produkt_id = ?`;
+
+        const productImages = await new Promise((resolve, reject) => {
+            db.query(queryProductImages, [prodId], (err, results) => {
+                if (err) return reject(err);
+                resolve(results.map(row=>row.obrazek));
+            });
+        });
+
+        const finalResult = {
+            ...productDetail,
+            images: productImages
+        };
+
+        res.status(200).json(finalResult);
+
+    } catch (error) {
+        console.error('Error při fetchování:', error);
+        res.status(500).json(null);
+    }
+});
 
   app.post('/produkt_velikost',(req,res)=>{
     const prodId = req.body.prod;
@@ -144,6 +203,27 @@ db.connect((err) => {
           }
           else {return res.status(200).json(results)};
         });
+  });
+
+  app.post('/send_message',async (req,res)=>{
+    const {name,surname,email,phone,text} = req.body;
+
+    const mailOptions = {
+      from: email,
+      to: 'zbranek.m@gmail.com',                       
+      subject: 'Zpráva z e-shopu',             
+      text: `Jméno: ${name} ${surname}
+            Telefon: ${phone}
+            ${text}`                    
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.status(200).send('Zpráva byla odeslána.');
+    } catch (error) {
+      console.log(error);
+        res.status(500).send('Zprávu se nepodařilo odeslat. Zkuste to později.');
+    };
   });
 
   if (process.env.NODE_ENV === 'production') {

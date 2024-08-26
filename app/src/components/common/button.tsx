@@ -1,20 +1,19 @@
 import './styles/button.css';
-import React, { act, useState } from 'react';
+import React, { act, ButtonHTMLAttributes, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type ButtonSize = 'small' | 'medium' | 'large';
 type ButtonVariant = 'normal' | 'secondary' | 'destructive' | 'confirm' | 'ghost' | 'ghost-secondary';
 
-type Props = {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?:ButtonSize;
     variant?:ButtonVariant;
     children:React.ReactNode;
     click?:()=>void,
     link?:string,
-    disabled?:boolean;
 }
 
-export function Button({size='medium',variant='normal',children,click,link,disabled=false}:Props) {
+export function Button({size='medium',variant='normal',children,click,link,...buttonProps}:ButtonProps) {
 
   const naviagate = useNavigate();
 
@@ -25,21 +24,21 @@ export function Button({size='medium',variant='normal',children,click,link,disab
     };
 
     return(
-      <button className={`button ${variant} ${size}`} onClick={handleClick} disabled={disabled}>
+      <button className={`button ${variant} ${size}`} onClick={handleClick} {...buttonProps}>
           {children}
       </button>
     );
   }
   else {
     return(
-      <button className={`button ${variant} ${size}`} onClick={click} disabled={disabled}>
+      <button className={`button ${variant} ${size}`} onClick={click} {...buttonProps}>
           {children}
       </button>
     );
   };
 };
 
-type VariantButtonProps = {
+interface VariantButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   click: (value:any)=>void,
   children:React.ReactNode,
   size?:ButtonSize;
@@ -48,14 +47,14 @@ type VariantButtonProps = {
   isActive:boolean;
 };
 
-export function VariantButton({click, children,size='medium',variant='ghost-secondary',returnValue,isActive}:VariantButtonProps) {
+export function VariantButton({click, children,size='medium',variant='ghost-secondary',returnValue,isActive,...buttonProps}:VariantButtonProps) {
 
   const handleClick = () =>{
     click(returnValue);
   };
 
   return(
-    <button className={`variant-button ${variant} ${size} ${isActive? 'active' : ''}`} onClick={handleClick}>
+    <button className={`variant-button ${variant} ${size} ${isActive? 'active' : ''}`} onClick={handleClick} {...buttonProps}>
       {children}
     </button>
   );

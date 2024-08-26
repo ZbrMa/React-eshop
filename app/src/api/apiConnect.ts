@@ -28,7 +28,7 @@ export const useApiPost = <T,>(apiPoint:string, payload: any, refetch:boolean = 
             setError(true);
             setData(null);
         } finally {
-            setLoading(false);
+            setTimeout(function(){setLoading(false)},1000);
         }
     };
     
@@ -62,7 +62,7 @@ export const useApiGetNoParams = <T,>(apiPoint:string) => {
             setError(true);
             setData(null);
         } finally {
-            setLoading(false);
+            setTimeout(function(){setLoading(false)},1000);
         }
     };
 
@@ -71,4 +71,26 @@ export const useApiGetNoParams = <T,>(apiPoint:string) => {
     }, []);
 
     return { data, loading, error };
+};
+
+export const useApiPostOnPurpose = <T,>(apiPoint: string,) => {
+    const [data, setData] = useState<T | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+
+    const fetchData = async (payload: any) => {
+        setLoading(true);
+        try {
+            const response = await api.post(apiPoint, payload);
+            setData(response.data as T);
+            setError(false);
+        } catch (err) {
+            setError(true);
+            setData(null);
+        } finally {
+            setTimeout(() => setLoading(false), 1000);
+        }
+    };
+
+    return { data, loading, error, postData: fetchData };
 };

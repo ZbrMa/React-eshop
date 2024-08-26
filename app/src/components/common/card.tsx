@@ -29,7 +29,7 @@ export function Card({id,image,title,onClick}:Props) {
                 <div className='card-title'>
                     <div className='card-title-inner'>
                         {title} 
-                        <Button variant='ghost'>Zjitit více</Button>
+                        <Button variant='ghost'>Zjistit více</Button>
                     </div>
                 </div>
             </div>

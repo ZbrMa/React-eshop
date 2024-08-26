@@ -1,9 +1,10 @@
 import './styles/productsGrid.css';
 import { ProductCard } from '../common/productCard';
-import { Product } from '../../types/types';
+import { IProduct } from '../../types/types';
+import { ClipLoader } from 'react-spinners';
 
 type Props = {
-    products: Product[] | null,
+    products: IProduct[] | null,
     loading:boolean,
     error:boolean,
     
@@ -11,19 +12,25 @@ type Props = {
 
 export function ProductsGrid({products,loading,error}:Props) {
 
-        return(
-            <div className="products-grid">
-                {loading? (
-                    <div>Načítám...</div>
-                ):(
-                    error? (
-                        <div>Chyba!</div>
-                    ):(
-                        products && products.map((product,index)=>
-                            <ProductCard image={product.obrazek} title={product.jmeno} price={product.cena} id={product.id}/>
-                        )
-                    )
-                )}
-            </div>
-        );    
+        if (loading){
+            return(
+                <ClipLoader color='var(--primaryHover)' cssOverride={{margin:'0 auto'}}></ClipLoader>
+            )
+        }
+        else if (error){
+            <div>Nastala chyba</div>
+        }
+        else {
+            return(
+                <div className="products-grid">
+                    {products && products.map((product,index)=>
+                        <ProductCard key={index} image={product.obrazek} title={product.jmeno} price={product.cena} id={product.id}>
+                            {product.popis}
+                        </ProductCard>
+                    )}
+                </div>
+            );    
+        };
+
+        return null;
 }

@@ -1,5 +1,5 @@
 import './styles/bodyBlock.css';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 type BlockColors = 'primary' | 'secondary';
 
@@ -12,6 +12,7 @@ type Props = {
     children: React.ReactNode;
     title?:string;
     id?:string;
+    style?:CSSProperties,
 }
 
 const BlockStyles: Record<BlockColors,BlockColor> = {
@@ -19,7 +20,7 @@ const BlockStyles: Record<BlockColors,BlockColor> = {
     secondary: {backgroundColor: 'var(--backgroundSecondary)'}
 }
 
-export function BodyBlock({children, variant='primary',title='',id}:Props) {
+export function BodyBlock({children, variant='primary',title='',id,style}:Props) {
 
     var hasTitle = false
     if (title===''){
@@ -27,11 +28,11 @@ export function BodyBlock({children, variant='primary',title='',id}:Props) {
     }
     else{ hasTitle = true}
     const blockVariant = BlockStyles[variant];
-    const styles = { ...blockVariant };
+    let styles = { ...blockVariant };
 
     return(
         <div className="body-block" style={styles} id={id}>
-            <div className="body-block-inner">
+            <div className="body-block-inner" style={style}>
                 {hasTitle &&(<div className='body-block-title'>{title}</div>)}
                 {children}
             </div>
